@@ -10,16 +10,9 @@
     font-family: monospace;
     -webkit-user-drag: none;
     user-select: none;
+    overflow: auto;
 }
-.bg2 {
-    position: relative;
-    display: flex;
-    background-color: rgb(255, 255, 255);
-    margin: 31px;
-    margin-top: 95px;
-    border: solid 1px rgb(0, 0, 0);
-    padding: 250px;
-}
+
 .bg0jp1 {
     background-color: rgb(255, 255, 255);
     border: solid 1.2px rgb(0, 0, 0);
@@ -44,10 +37,10 @@
 
 .bg2 {
     position: relative;
-    display: flex;
     align-items: stretch; /* makes children fill full height */
     background-color: rgb(255, 255, 255);
-    margin: 31px;
+    margin-left: 31px;
+    margin-right: 31px;
     margin-top: 95px;
     border: solid 1px rgb(0, 0, 0);
     padding: 0; /* remove huge padding so children start at left */
@@ -59,7 +52,7 @@
     display: flex;
     background-color: rgb(255, 255, 255);
     border: solid 1.2px rgb(0, 0, 0);
-    height: 500px; /* flex will stretch it */
+    height: auto; /* flex will stretch it */
     box-sizing: border-box; /* keeps border inside */
 }
 .bg4 {
@@ -70,6 +63,16 @@
     border: solid 1.2px rgb(0, 0, 0);
     height: auto; /* flex will stretch it */
     box-sizing: border-box; /* keeps border inside */
+}
+.bg5 {
+    position: relative;
+    display: flex;
+    margin-right: 31px;
+    margin-left: 31px;
+    align-items: stretch; /* makes children fill full height */
+    background-color: rgb(255, 255, 255);
+    border: solid 1px rgb(0, 0, 0);
+    padding: 0; /* remove huge padding so children start at left */
 }
 
 
@@ -82,9 +85,11 @@
     Creation-Energy: <span style="float: right;" id="ce"></span>
      </div>
     <div class="bg2">
+      <div style="display: flex;">
+
         <div class="bg3">
            <div style="border: 1.2px solid black; margin: 2px;">
-  <div style="width: auto; height: auto; justify-items: center; font-size: 15px; margin: 1px;"><div>Fermions Stats: </div></div>
+  <div style="width: auto; height: auto; justify-items: center; font-size: 15px; margin: 1px;overflow: auto;"><div>Fermions Stats: </div></div>
     <div style=" width: auto; height: auto; font-size: 16px;">
       <div style="border: 1.2px solid black;">
          <div style="border: 1.1px solid black; width: auto; font-size: 13px; margin: 1px;">
@@ -97,25 +102,25 @@
           <div style="float: right; margin-right: 2px;">(<span id="dwq">0</span>/<span id="dwqcap">0</span>)</div>
         </div>
 
-        <div style="border: 1.2px solid black; width: auto; height: auto; justify-items: center; font-size: 15px;margin: 1px;"><div>Fundamental stats</div></div>
+        <div style="border: 1.2px solid black; width: auto; height: auto; justify-items: center; font-size: 15px;margin: 1px;overflow: auto;"><div>Fundamental stats</div></div>
 
-        <div style="border: solid 1.2px rgb(0, 0, 0); padding-left: 5px;margin: 1px;">
+        <div style="border: solid 1.2px rgb(0, 0, 0); padding-left: 5px;margin: 1px;overflow: auto;">
           Gluon :
           <div style="float: right; margin-right: 2px;" id="gluon">0</div>
         </div>
 
-        <div style="border: solid 1.2px rgb(0, 0, 0); padding-left: 5px;margin: 1px; ">
+        <div style="border: solid 1.2px rgb(0, 0, 0); padding-left: 5px;margin: 1px;overflow: auto; ">
           Protons :
           <div style="float: right; margin-right: 2px;" id="proton">0</div>
         </div>
 
         
-        <div style="border: solid 1.2px rgb(0, 0, 0); padding-left: 5px;margin: 1px;">
+        <div style="border: solid 1.2px rgb(0, 0, 0); padding-left: 5px;margin: 1px;overflow: auto;">
           Neutrons :
           <div style="float: right; margin-right: 2px;" id="neutron">0</div>
         </div>
 
-          <div style="border: solid 1.2px rgb(0, 0, 0); padding-left: 5px;margin: 1px;">
+          <div style="border: solid 1.2px rgb(0, 0, 0); padding-left: 5px;margin: 1px;overflow: auto;">
           Electron :
           <div style="float: right; margin-right: 2px;" id="electron">0</div>
         </div>
@@ -128,9 +133,13 @@
           Photon :
           <div style="float: right; margin-right: 2px;" id="photon">0</div>
         </div>
+         <div style="border: solid 1.2px rgb(0, 0, 0); padding-left: 5px;margin: 1px; overflow: auto;">
+          Rad-E :
+          <div style="float: right; margin-right: 2px;" id="radiation">0</div>
+        </div>
 
           <div style="border: 1.2px solid black; width: auto; height: auto; justify-items: center; font-size: 15px;margin: 1px; overflow: auto;"><div>Atomic stats</div></div>
-          <div style="border: solid 1.2px rgb(0, 0, 0); padding-left: 5px;margin: 1px;">
+          <div style="border: solid 1.2px rgb(0, 0, 0); padding-left: 5px;margin: 1px;overflow: auto;">
           Deutrium :
           <div style="float: right; margin-right: 2px;" id="deutrium">0</div>
         </div>
@@ -174,6 +183,11 @@
           <div style="font-size: 15.5px; border: solid 1.1px rgb(0, 0, 0); padding-left: 5px; margin: 1px; width: 100%; justify-items: center; align-content: center;"><div>Cost: 2 DWQ / 1 UPQ   / <span id="neutronr"> 0 </span><span> Gluons </span></div></div>
         </div>
 
+         <div style="border: solid 1.1px rgb(0, 0, 0); margin: 1px; display: flex;">
+          <button style="width: 200px; cursor: pointer; margin: 1px;" onclick="reformquark()" >Re-Form Quarks</button>
+          <div style="font-size: 15.5px; border: solid 1.1px rgb(0, 0, 0); padding-left: 5px; margin: 1px; width: 100%; justify-items: center; align-content: center;"><div>Cost: 1 Neutron & Proton   / <span> 1000 </span><span> Gluons </span></div></div>
+        </div>
+
          <div style="border: solid 1.1px rgb(0, 0, 0); padding-left: 5px; margin: 1px;">
           Gluons :
           <div style="float: right; margin-right: 2px;"><span id="gluonb">1</span><span>x CE</span></div>
@@ -187,12 +201,11 @@
         <div style="border: solid 1.1px rgb(0, 0, 0); padding-left: 5px; margin: 1px;">
           Energizer :
              <div style="float: right; margin-right: 2px;"><span id="photonb1">1</span><span>x GL </span></div>
-             <div style="float: right; margin-right: 8px;"><span id="photonb2">1</span><span>x CE </span></div>
+             <div style="float: right; margin-right: 8px;"><span id="photonb2">1</span><span>x CE &</span></div>
         </div>
 
 
       </div>
-    </div>
 
   <div style="border: 1.2px solid black; margin: 2px; width: 45%;">
   <div style="width: auto; height: auto; font-size: 16px;; justify-items: center; font-size: 18px; margin: 1px;border: solid 1.1px rgb(0, 0, 0);"><div>Nuclear Tab : </div></div>
@@ -202,20 +215,81 @@
 
           <div style="border: solid 1.1px rgb(0, 0, 0); padding-left: 5px; margin: 1px;">
           Reset For :
-          <div style="float: right; margin-right: 2px;"><span id="r1deutriumb1">1</span><span>x Deutrium</span></div>
+          <div style="float: right; margin-right: 2px;"><span id="r1deutriumb1">1</span><span> + Deutrium</span></div>
         </div>
          <div style="border: solid 1.1px rgb(0, 0, 0); padding-left: 5px; margin: 1px;">
           Reset For :
-          <div style="float: right; margin-right: 2px;"><span id="r1photonb1">1</span><span>x Photons</span></div>
+          <div style="float: right; margin-right: 2px;"><span id="r1photonb1">1</span><span> + Photons</span></div>
         </div>
+
+        <div style="border: 1.2px solid black; width: auto; height: auto; justify-items: center; font-size: 18px;margin: 1px; overflow: auto;"><div>Radiation stats</div></div>
+
+        <div style="border: solid 1.1px rgb(0, 0, 0); padding-left: 5px; margin: 1px;">
+          Rad-E :
+          <div style="float: right; margin-right: 2px;"><span id="radiationb1">1</span><span>x CE</span></div>
+        </div>
+
+         <div style="border: solid 1.1px rgb(0, 0, 0); padding-left: 5px; margin: 1px;">
+          Photons-Earned :
+          <div style="float: right; margin-right: 2px;"><span id="photonr3">1</span><span>x Gluons (Photon)</span></div>
+        </div>
+        
           
       </div>
+
     </div>
+</div>
+<div style="border: 1.2px solid black; margin: 2px; width: 67.5%;">
+  <div style="width: auto; height: auto; font-size: 16px;; justify-items: center; font-size: 18px; margin: 1px;border: solid 1.1px rgb(0, 0, 0);"><div>Research-Lab (Upgrades) : </div></div>
+        <div style="border: solid 1.1px rgb(0, 0, 0); margin: 1px; display: flex;"></div>
+
+         <div style="border: solid 1.1px rgb(0, 0, 0); margin: 1px; display: flex;">
+          <button style="width: 200px; cursor: pointer; margin: 1px;" onclick="gla0upg()" >Gluon-A</button>
+          <div style="font-size: 15.5px; border: solid 1.1px rgb(0, 0, 0); padding-left: 5px; margin: 1px; width: 100%; justify-items: center; align-content: center;"><div><span id="upg1r1"> 35 </span><span> Photons / <span id="upg1r2">15</span><span> Proton & Neutron</span> <span>R: x^2 CE & +0.05^ Gl-B1 & 1.3x</span></span></div></div>
+        </div>
+
+        <div style="border: solid 1.1px rgb(0, 0, 0); padding-left: 5px; margin: 1px;">
+          Gluon-A :
+             <div style="float: right; margin-right: 2px;"><span id="upg1b3">1</span><span>x Photon (Hadron-F) </span></div>
+             <div style="float: right; margin-right: 8px;"><span id="upg1b2">0</span><span>+^ GL-B1 &</span></div>
+             <div style="float: right; margin-right: 8px;"><span id="upg1b1">1</span><span>x CE &</span></div>
+        </div>
+
+          <div style="border: solid 1.1px rgb(0, 0, 0); margin: 1px; display: flex;">
+          <button style="width: 200px; cursor: pointer; margin: 1px;" onclick="gla0upg()" >Gluon-A</button>
+          <div style="font-size: 15.5px; border: solid 1.1px rgb(0, 0, 0); padding-left: 5px; margin: 1px; width: 100%; justify-items: center; align-content: center;"><div><span id="upg1r1"> 35 </span><span> Photons / <span id="upg1r2">15</span><span> Proton & Neutron</span> <span>R: x^2 CE & +0.05^ Gl-B1 & 1.3x</span></span></div></div>
+        </div>
+
+        <div style="border: solid 1.1px rgb(0, 0, 0); padding-left: 5px; margin: 1px;">
+          Gluon-A :
+             <div style="float: right; margin-right: 2px;"><span id="upg1b3">1</span><span>x Photon (Hadron-F) </span></div>
+             <div style="float: right; margin-right: 8px;"><span id="upg1b2">0</span><span>+^ GL-B1 &</span></div>
+             <div style="float: right; margin-right: 8px;"><span id="upg1b1">1</span><span>x CE &</span></div>
+        </div>
+
+          <div style="border: solid 1.1px rgb(0, 0, 0); margin: 1px; display: flex;">
+          <button style="width: 200px; cursor: pointer; margin: 1px;" onclick="gla0upg()" >Gluon-A</button>
+          <div style="font-size: 15.5px; border: solid 1.1px rgb(0, 0, 0); padding-left: 5px; margin: 1px; width: 100%; justify-items: center; align-content: center;"><div><span id="upg1r1"> 35 </span><span> Photons / <span id="upg1r2">15</span><span> Proton & Neutron</span> <span>R: x^2 CE & +0.05^ Gl-B1 & 1.3x</span></span></div></div>
+        </div>
+
+        <div style="border: solid 1.1px rgb(0, 0, 0); padding-left: 5px; margin: 1px;">
+          Gluon-A :
+             <div style="float: right; margin-right: 2px;"><span id="upg1b3">1</span><span>x Photon (Hadron-F) </span></div>
+             <div style="float: right; margin-right: 8px;"><span id="upg1b2">0</span><span>+^ GL-B1 &</span></div>
+             <div style="float: right; margin-right: 8px;"><span id="upg1b1">1</span><span>x CE &</span></div>
+        </div>
+        
+
+      </div>
+  
+
+
   </div>
   </div>
 </div>
 </div>
 </div>
+
 </body>
 <script>
     function formatNumber(value) {
@@ -246,18 +320,24 @@
       deutrium: 0,
 
       photon: 0,
+      radiation: 0,
 
       quarkr: 1,
       protonr: 150,
       neutronr: 150,
       r1r1: 20,
-      r1r2: 15000,
+      r1r2: 10000,
+      glar1: 125,
+      glar2: 35,
 
       dwqcap: 2,
       upqcap: 2,
 
       upqb: 1,
-      dwqb: 1
+      dwqb: 1,
+      glab1: 1,
+      glab2: 0,
+      glab3: 1
 
 
     };
@@ -284,7 +364,7 @@ function updui() {
       gs.neutronr = (150*((gs.neutron+2/2)))
 
 
-      document.getElementById('ce').innerText = "" + formatNumber(((gs.ce).toFixed(3)))
+      document.getElementById('ce').innerText = "" + formatNumber(((gs.ce).toFixed(2)))
       document.getElementById('dwq').innerText = "" + formatNumber(((gs.dwq).toFixed(0)))
       document.getElementById('upq').innerText = "" + formatNumber(((gs.upq).toFixed(0)))
 
@@ -295,6 +375,7 @@ function updui() {
       document.getElementById('deutrium').innerText = "" + formatNumber(((gs.deutrium).toFixed(0)))
 
       document.getElementById('photon').innerText = "" + formatNumber(((gs.photon).toFixed(2)))
+      document.getElementById('radiation').innerText = "" + formatNumber(((gs.radiation).toFixed(2)))
       
       document.getElementById('quarkr').innerText = "" + formatNumber(((gs.quarkr).toFixed(2)))
       document.getElementById('dwqcap').innerText = "" + formatNumber(((gs.dwqcap).toFixed(0)))
@@ -303,9 +384,13 @@ function updui() {
       document.getElementById('qb1').innerText = "" + formatNumber(((gs.upqb).toFixed(2)))
       document.getElementById('qb2').innerText = "" + formatNumber(((gs.dwqb).toFixed(2)))
       document.getElementById('qb3').innerText = "" + formatNumber(((((gs.dwq)+(gs.upq))).toFixed(2)))
-      document.getElementById('gluonb').innerText = "" + formatNumber(((Math.pow(((gs.gluon+9.4)/2), 0.45))/2).toFixed(2))
+      document.getElementById('gluonb').innerText = "" + formatNumber((((Math.pow(((gs.gluon+9.4)/2), (0.45+gs.glab2)))/2)).toFixed(2))
       document.getElementById('photonb2').innerText = "" + formatNumber((energizerBoost).toFixed(2))
       document.getElementById('photonb1').innerText = "" + formatNumber(((energizerBoost+4)/5).toFixed(2))
+      document.getElementById('upg1b1').innerText = "" + formatNumber(((((Math.pow(gs.glab1,2)))).toFixed(1)))
+      document.getElementById('upg1b2').innerText = "" + formatNumber(((gs.glab2).toFixed(2)))
+      document.getElementById('upg1b3').innerText = "" + formatNumber((((gs.glab3)).toFixed(1)))
+      document.getElementById('radiationb1').innerText = "" + formatNumber((((gs.radiation+10)/10).toFixed(1)))
 
       document.getElementById('r1deutriumb1').innerText = "" + formatNumber(((possible).toFixed(2)))
       document.getElementById('r1photonb1').innerText = "" + formatNumber(((leftover).toFixed(2)))
@@ -316,6 +401,8 @@ function updui() {
       document.getElementById('photonr').innerText = "" + formatNumber((photonr).toFixed(2))
       document.getElementById('r1r1').innerText = "" + formatNumber(((gs.r1r1).toFixed(2)))
       document.getElementById('r1r2').innerText = "" + formatNumber(((gs.r1r2).toFixed(2)))
+      document.getElementById('upg1r1').innerText = "" + formatNumber(((gs.glar1).toFixed(0)))
+      document.getElementById('upg1r2').innerText = "" + formatNumber(((gs.glar2).toFixed(0)))
 }
 
  function SIgroup() {
@@ -326,7 +413,11 @@ function updui() {
 
     function incce() {
   if (gs.ce > -1) {
-    gs.ce += ((0.015*(gs.dwqb)*(gs.upqb))*((Math.pow(((gs.gluon+10)/2), 0.45))/2))*(energizerBoost)
+    gs.ce += ((((0.02*(gs.dwqb)*(gs.upqb))
+    *((Math.pow(((gs.gluon+9.4)/2), (0.45+gs.glab2))/2))
+    *(energizerBoost)*(1+gs.deutrium))
+    *((Math.pow(gs.glab1,2))))
+    *((gs.radiation+10)/10))
   }
 }
 
@@ -335,6 +426,21 @@ function incgluons() {
     gs.gluon += (((gs.dwq)+(gs.upq))*((energizerBoost+4)/5))
   }}
 
+  function incradiation() {
+  if (gs.deutrium > 0) {
+    gs.radiation += ((gs.deutrium)/1000)
+  }}
+
+
+  function reformquark() {
+    if (gs.gluon >= 1000 && gs.proton >= 1 && gs.neutron >= 1 && gs.dwq >=2 && gs.upq >= 2) {
+      gs.proton -= 1
+      gs.neutron -= 1
+      gs.dwq =0
+      gs.upq =0 
+      gs.photon += (((gs.dwq)+(gs.upq))/10)
+    }
+  }
 function formQ() {
   if (gs.ce <= gs.quarkr) return;
 
@@ -346,8 +452,10 @@ function formQ() {
     gs.upq++;
   } else if (gs.dwq < gs.dwqcap) {
     gs.dwq++;
+  } else if (gs.upq < gs.upqcap) {
+    gs.dwq++;
   } else {
-    return;
+    return
   }
 
   gs.ce -= gs.quarkr;
@@ -365,6 +473,7 @@ function formproton() {
     gs.photon += (Math.pow((gs.protonr/5000), 0.55))
   }
 }
+
 function formneutron() {
   if (gs.gluon >= gs.neutronr && gs.upq >= 1 && gs.dwq >=2) {
     gs.neutron += 1
@@ -405,7 +514,22 @@ function formenergizer() {
       clearInterval(energizerDecay);
       energizerDecay = null;
     }
-  }, 150);
+  }, 200);
+}
+
+function gla0upg() {
+  if (gs.photon >= gs.glar1 && gs.proton >= gs.glar2 && gs.neutron >= gs.glar2) {
+    gs.photon -= gs.glar1
+    gs.proton -= gs.glar2
+    gs.neutron -= gs.glar2
+
+    gs.glar1 *= 5
+    gs.glar2 *= 3
+
+    gs.glab1 +=1
+    gs.glab2 +=0.05
+    gs.glab3 +=0.3
+  }
 }
 
 
@@ -438,6 +562,7 @@ function formdeutrium() {
       setInterval(SIgroup, 85); 
       setInterval(incce, 200); 
       setInterval(incgluons,250); 
+      setInterval(incradiation,150); 
     };
   </script>
 </html>
