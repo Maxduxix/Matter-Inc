@@ -326,6 +326,7 @@
 
 
      let gs = JSON.parse(localStorage.getItem("gs")) || {
+      t: 0,
       t1: 0,
       ce: 0,
       dwq: 0,
@@ -395,7 +396,7 @@ function updui() {
 
   document.getElementById('cev0s').innerText = formatNumber(formatDynamic(gs.cev0s, 2));
 
-  document.getElementById('timeplayed').innerText = formatNumber(formatDynamic(gs.t1, 2));
+  document.getElementById('timeplayed').innerText = formatNumber(formatDynamic(gs.t, 2));
   document.getElementById('ce').innerText = formatNumber(formatDynamic(gs.ce, 2));
   document.getElementById('dwq').innerText = formatNumber(formatDynamic(gs.dwq, 2));
   document.getElementById('upq').innerText = formatNumber(formatDynamic(gs.upq, 2));
@@ -449,7 +450,8 @@ function SIgroup() {
 
 function inct1() {
   if (((gs.t1 + 100) / 100) < 3.5) {
-    gs.t1 += 1      
+    gs.t += 1  
+    gs.t1 +=1
   }
 }
 
@@ -616,6 +618,7 @@ function formdeutrium() {
     gs.ce = 0;
     gs.dwq = 0;
     gs.upq = 0;
+    gs.t1 = 0
     energizerBoost = 1;
   }
 }
