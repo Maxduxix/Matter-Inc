@@ -167,6 +167,8 @@
           <div style="float: right; margin-right: 2px;"><span id="tb1">0</span><span>x CE</span><span> (Max: <span>3.5</span>x)</span></div>
         </div>
 
+        
+
         <div style="border: solid 1.1px rgb(0, 0, 0); padding-left: 5px; margin: 1px;">
           Quarks (diffrence) :
           <div style="float: right; margin-right: 2px;"><span id="qb">1</span><span>x CE</span></div>
@@ -218,6 +220,16 @@
         <div style="border: solid 1.1px rgb(0, 0, 0); margin: 1px; display: flex;">
           <button style="width: 200px; cursor: pointer; margin: 1px;" onclick="formdeutrium()" >COLLIDE</button>
           <div style="font-size: 15.5px; border: solid 1.1px rgb(0, 0, 0); padding-left: 5px; margin: 1px; width: 100%; justify-items: center; align-content: center;"><div>Req: <span id="r1r1">20</span> <span>Protons & Neutron / <span id="r1r2">10k</span> Gluons</span></div></div></div>
+
+                  <div style="border: solid 1.1px rgb(0, 0, 0); margin: 1px; display: flex;">
+          <button style="width: 100px; cursor: pointer; margin: 1px; font-size: 13px;" onclick="r1plus()" >+</button>
+          <div style="font-size: 13.5px; border: solid 1.1px rgb(0, 0, 0); padding-left: 5px; margin: 1px; width: 100%; justify-items: center; align-content: center;"><div>Energy: <span id="r1energyr1"></span> PH</div></div>
+          <div style="font-size: 13.5px; border: solid 1.1px rgb(0, 0, 0); padding-left: 5px; margin: 1px; width: 100%; justify-items: center; align-content: center;"><div>Gluons: <span id="r1energyr2"></span> GL</div></div>
+          <div style="font-size: 13.5px; border: solid 1.1px rgb(0, 0, 0); padding-left: 5px; margin: 1px; width: 100%; justify-items: center; align-content: center;"><div>Efficiency: <span id="r1eff">20</span> %</div></div>
+          <button style="width: 100px; cursor: pointer; margin: 1px; font-size: 13px;" onclick="r1minus()" >-</button>
+        </div>
+
+          
 
           <div style="border: solid 1.1px rgb(0, 0, 0); padding-left: 5px; margin: 1px;">
           Reset For :
@@ -332,13 +344,13 @@
       dwq: 0,
       upq: 0,
 
-      gluon: 0,
-      proton: 0,
-      neutron: 0,
+      gluon: 52220,
+      proton: 40,
+      neutron: 40,
       electron: 0,
       deutrium: 0,
 
-      photon: 0,
+      photon: 400,
       radiation: 0,
 
       quarkr: 1,
@@ -348,6 +360,8 @@
       r1r2: 10000,
       upg1r1: 95,
       upg1r2: 50,
+      r1energyr1: 2.5,
+      r1energyr2: 250000,
 
       t1cap: 3.5,
       dwqcap: 2,
@@ -358,10 +372,14 @@
       upg1b2: 0,
       upg1b3: 1,
       photonb3: 1,
+      r1b: 1,
 
       cev0s: 1,
 
-      cenerf: 1
+      cenerf: 1,
+
+      r1plus: 1,
+      r1minus: 0
 
 
     };
@@ -383,7 +401,13 @@ function formatDynamic(num, decimals = 2) {
 
 function updui() { 
 
-  gs.cev0s = ((0.01 * gs.qb ) * (Math.pow(((gs.gluon + 9.4) / 2), (0.45 + gs.upg1b2)) / 2) * energizerBoost * (Math.pow(2, gs.upg1b1) * 0.5) * ((gs.radiation + 5) / 5)  *  ((gs.t1+100)/100) * 5 / (gs.cenerf));      
+  //equations: 
+
+
+  gs.r1b = ((gs.r1energyr1)*(gs.r1energyr2/10000))/5
+  gs.r1energyr1 = ((5) * (Math.pow((gs.r1plus-(gs.r1minus+1)),1.2)))
+  gs.r1energyr2 = ((25000) * (Math.pow((gs.r1plus-(gs.r1minus+1)),1.5)))
+  gs.cev0s = ((0.01 * gs.qb ) * (Math.pow(((gs.gluon + 9.4) / 2), (0.45 + gs.upg1b2)) / 2) * energizerBoost * (Math.pow(2, gs.upg1b1) * 0.5) * ((gs.radiation + 5) / 5)  * 5 *  ((gs.t1+100)/100) / (gs.cenerf));      
   photonr = (0.15 * ((energizerBoost + 2) / 3));
   gs.dwqcap = (gs.proton + gs.neutron + 2);
   gs.upqcap = (gs.proton + gs.neutron + 2);
@@ -410,7 +434,7 @@ function updui() {
   document.getElementById('photon').innerText = formatNumber(formatDynamic(gs.photon, 2));
   document.getElementById('radiation').innerText = formatNumber(formatDynamic(gs.radiation, 2));
   
-  document.getElementById('quarkr').innerText = formatNumber(formatDynamic(gs.quarkr, 2));
+  document.getElementById('quarkr').innerText = formatNumber(formatDynamic(gs.quarkr, 2))
   document.getElementById('dwqcap').innerText = formatNumber(formatDynamic(gs.dwqcap, 2));
   document.getElementById('upqcap').innerText = formatNumber(formatDynamic(gs.upqcap, 2));
   
@@ -428,7 +452,7 @@ function updui() {
 
   document.getElementById('cenerf').innerText = formatNumber(formatDynamic(gs.cenerf, 2));
 
-  document.getElementById('r1deutriumb1').innerText = formatNumber(formatDynamic(possible, 2));
+  document.getElementById('r1deutriumb1').innerText = formatNumber(formatDynamic((possible * (gs.r1b)), 2));
   document.getElementById('r1photonb1').innerText = formatNumber(formatDynamic(leftover, 2));
 
   document.getElementById('protonr').innerText = formatNumber(formatDynamic(gs.protonr, 2));
@@ -436,6 +460,8 @@ function updui() {
   document.getElementById('photonr').innerText = formatNumber(formatDynamic(photonr, 2));
   document.getElementById('r1r1').innerText = formatNumber(formatDynamic(gs.r1r1, 2));
   document.getElementById('r1r2').innerText = formatNumber(formatDynamic(gs.r1r2, 2));
+  document.getElementById('r1energyr1').innerText = formatNumber(formatDynamic(gs.r1energyr1, 2));
+  document.getElementById('r1energyr2').innerText = formatNumber(formatDynamic(gs.r1energyr2, 2));
   document.getElementById('upg1r1').innerText = formatNumber(formatDynamic(gs.upg1r1, 2));
   document.getElementById('upg1r2').innerText = formatNumber(formatDynamic(gs.upg1r2, 2));
 }
@@ -448,10 +474,15 @@ function SIgroup() {
   localStorage.setItem("gs", JSON.stringify(gs));
 }
 
+function inct() {
+  if (gs.t1  >= -1) {
+    gs.t += 1
+  }
+}
+
 function inct1() {
   if (((gs.t1 + 100) / 100) < 3.5) {
-    gs.t += 1  
-    gs.t1 +=1
+    gs.t1 += 1
   }
 }
 
@@ -598,9 +629,11 @@ function upg1() {
   }
 }
 
+
 // Combine protons + neutrons + gluons into deutrium (reset cycle)
 function formdeutrium() {
-  if (gs.proton >= gs.r1r1 && gs.neutron >= gs.r1r1 && gs.gluon >= gs.r1r2) {
+  if (gs.proton >= gs.r1r1 && gs.neutron >= gs.r1r1 && gs.gluon >= gs.r1r2 && gs.photon >= gs.r1energyr1) {
+    gs.r1b = ((gs.r1energyr1)*(gs.r1energyr2/10000))/5
     possible = Math.min(gs.proton, gs.neutron);
     leftover = (Math.pow((gs.gluon / 1500), 0.85)) + (gs.neutron + (gs.proton / 2));
     
@@ -609,7 +642,7 @@ function formdeutrium() {
 
     gs.proton -= possible;
     gs.neutron -= possible;
-    gs.deutrium += possible;
+    gs.deutrium +=(possible * (s1));
 
     // Reset core resources
     gs.neutron = 0;
@@ -618,8 +651,20 @@ function formdeutrium() {
     gs.ce = 0;
     gs.dwq = 0;
     gs.upq = 0;
-    gs.t1 = 0
+    gs.t1 = 0;
     energizerBoost = 1;
+  }
+}
+
+function r1plus() { 
+  if (gs.r1plus > (gs.r1minus-1)) {
+    gs.r1plus += 1
+  }
+}
+
+function r1minus() { 
+  if (gs.r1plus > (gs.r1minus+1)) {
+    gs.r1minus += 1
   }
 }
 
@@ -631,6 +676,7 @@ window.onload = function () {
   setInterval(incgluons, 250);   // gluon growth
   setInterval(incradiation, 150);// radiation growth
   setInterval(inct1,1000)
+  setInterval(inct,1000)
 };
 
   </script>
